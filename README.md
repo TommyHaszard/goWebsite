@@ -1,0 +1,1 @@
+Just a small website, built from scratch without a framework using Go, HTMX and Templ to generate the HTML. Pretty fun and easy to use, will be updating this in the future as a possible blog / personal website.
