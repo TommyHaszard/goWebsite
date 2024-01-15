@@ -1,0 +1,66 @@
+package todo
+
+import (
+	"github.com/TommyHaszard/goWebsite/view/css"
+	"github.com/TommyHaszard/goWebsite/model"
+)
+
+templ ShowTodos(todoMap map[string]model.Todo) {
+	<div id="outerTodo">
+		<ul class={ css.ListStyle() }>
+			for _, item := range todoMap {
+				<li class={ css.TodoItem(), css.TodoText() }>{ item.Name }</li>
+			}
+		</ul>
+		@CreateTodoButton()
+	</div>
+}
+
+templ CreateTodo() {
+	<div class={ css.TodoForm() } id="outerTodo">
+		<h2>Creating Todo! </h2>
+		<form class={ css.TodoInput() } hx-post="/createTodo" hx-target="#outerTodo">
+			<h3>Todo Name </h3>
+			<input
+ 				id="todoCreate"
+ 				name="name"
+ 				type="text"
+			/>
+			<h3>Todo Description </h3>
+			<input
+ 				id="todoCreate"
+ 				name="desc"
+ 				type="text"
+			/>
+			<button class={ css.SubmitButton() } type="submit">Create Todo!</button>
+		</form>
+	</div>
+}
+
+templ CreateOrShowTodos() {
+	<div id="outerTodo">
+		<h2>Todo Created! </h2>
+		@CreateTodoButton()
+		@ShowTodosButton()
+	</div>
+}
+
+templ CreateTodoButton() {
+	<button
+ 		hx-get="/todoFetchForm"
+ 		hx-trigger="click"
+ 		hx-target="#outerTodo"
+	>
+		New todo?
+	</button>
+}
+
+templ ShowTodosButton() {
+	<button
+ 		hx-get="/showTodos"
+ 		hx-trigger="click"
+ 		hx-target="#outerTodo"
+	>
+		Return Todos?
+	</button>
+}

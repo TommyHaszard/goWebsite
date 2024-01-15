@@ -1,0 +1,12 @@
+package index
+
+import (
+	"github.com/TommyHaszard/goWebsite/view/layout"
+	"github.com/TommyHaszard/goWebsite/view/user"
+)
+
+templ Index() {
+	@layout.Base() {
+		@user.CreateUserForm()
+	}
+}

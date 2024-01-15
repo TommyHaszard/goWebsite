@@ -1,0 +1,44 @@
+package user
+
+import (
+	"github.com/TommyHaszard/goWebsite/model"
+)
+
+templ ShowUser(user model.User) {
+	<h2>{ user.Name } </h2>
+}
+
+templ FetchUserForm() {
+	<form hx-get="/showUser">
+		<input
+ 			id="userFetch"
+ 			name="userFetch"
+ 			type="text"
+		/>
+		<button type="Find!">Submit</button>
+	</form>
+}
+
+templ TodoButton() {
+	<button
+ 		hx-get="/todoFetchForm"
+ 		hx-trigger="click"
+ 		hx-swap="outerHTML"
+	>
+		Create Todo for User!
+	</button>
+}
+
+templ CreateUserForm() {
+	<div id="outerTodo" class="todo-input">
+		<h2>Create User </h2>
+		<form hx-post="/createUser" hx-target="#outerTodo">
+			<input
+ 				id="userCreate"
+ 				name="userCreate"
+ 				type="text"
+			/>
+			<button type="submit">Submit</button>
+		</form>
+	</div>
+}
